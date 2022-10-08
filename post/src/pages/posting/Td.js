@@ -4,9 +4,8 @@ const Td = ({item}) => {
         <tr>
             <td>{item.id}</td>
             <td>{item.name}</td>
-            <td>{item.email}</td>
-            <td>{item.phone}</td>
-            <td>{item.website}</td>
+            <td>{item.Username}</td>
+            <td>{item.content}</td>
         </tr>
         </>
     )

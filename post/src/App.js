@@ -5,6 +5,7 @@ import {Container,Nav,Navbar} from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Home from "./pages/Home"
 import Board from './pages/Board';
+import Post from './pages/Post'
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route  path='/board' element={<Board />} />
+        <Route  path='post' element={<Post />} />
+        
+        
       </Routes>
     </div>
   );
