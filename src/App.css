@@ -1,18 +1,36 @@
 .App {
   text-align: center;
 }
+
 .Auth-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
+}
+
+.Auth-form-container-custumed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 50vh;
 }
 
 .Auth-form {
   width: 420px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-custumed {
+  width: 800px;
+  height: 400px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
