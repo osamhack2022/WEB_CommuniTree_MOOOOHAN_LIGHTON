@@ -3,9 +3,9 @@ const Td = ({item}) => {
         <>
         <tr>
             <td>{item.id}</td>
-            <td>{item.name}</td>
-            <td>{item.Username}</td>
+            <td>{item.title}</td>
             <td>{item.content}</td>
+            <td>{item.username}</td>
         </tr>
         </>
     )

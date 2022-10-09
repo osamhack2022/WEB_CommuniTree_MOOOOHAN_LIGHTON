@@ -2,18 +2,17 @@ import {useState} from 'react'
 
 const Post = ({onSaveData}) => {
     const [form,setForm] = useState({
-        name : '',
-        email: '',
-        phone: '',
-        website: '',
+        title : '',
+        content: '',
+        username: '',
     })
 
     const handleChange = (e) => {
-        const {name,value} = e.target;
+        const {title,value} = e.target;
         setForm(
             {
                 ...form,
-                [name] : value
+                [title] : value
             }
         )
     }
@@ -23,8 +22,9 @@ const Post = ({onSaveData}) => {
         onSaveData(form);
         setForm(
             {
-                name : '',
-                email: ''
+                title : '',
+                content: '',
+                username: '',
             }
         )
     }
@@ -39,11 +39,11 @@ const Post = ({onSaveData}) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <strong>제목</strong>
-                    <input type="text" name="name" value={form.name} onChange={handleChange} />
+                    <input type="text" title="title" value={form.title} onChange={handleChange} />
                 </div>
                 <div>
                     <label>내용</label>
-                    <input type='email' name='email' value={form.email} onChange={handleChange}/>
+                    <input type='content' cotent='content' value={form.content} onChange={handleChange}/>
                 </div>
                 <div>
                     <button type='submit'>제출</button>
