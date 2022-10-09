@@ -10,22 +10,23 @@ import Profile from './Profile';
 import NotFound from './NotFound';
 import LoginForm from './aboutLogin/LoginForm';
 import Move from './aboutLogin/Move';
+import Write from './Write';
 
 function App() {
   const [user, setUser] = useState(null);
   const authenticated = user != null;
   const navigate = useNavigate();
-  const login = ({ mNumber, password }) => setUser(signIn({ mNumber, password }));
+  const login = ({ mNumber, password, users }) => setUser(signIn({ mNumber, password, users }));
   const logout = () => setUser(null);
 
   return (
     <div className='App'>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">소통나무</Navbar.Brand>
+          <Navbar.Brand onClick={ ()=>{ navigate('/') } }>소통나무</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link onClick={ ()=>{ navigate('/') } }>메인</Nav.Link>
             <Nav.Link onClick={ ()=>{ navigate('/profile') } }>내 나무</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/write') } }>열매 달기</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
             {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<LoginForm authenticated={authenticated} login={login} />}/>
         <Route path="/profile" element={ authenticated ? (<Profile user = {user} />) : <Move/> }/>
+        <Route path="/write" element={ authenticated ? (<Write />) : <Move/> }/>
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>

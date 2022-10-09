@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import users from './auth.js';
+import axios from 'axios';
 
 function LoginForm(props) {
     const [mNumber, setMNumber] = useState('');
     const [password, setPassword] = useState('');
     const [authMode, setAuthMode] = useState('signin');
-    const [data, setData] = useState({
-        mNumber: '',
-        email: '',
-        password: '',
-        name: ''
-    });
+    const [users, setUsers] = useState([]);
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(res => setUsers(res.data))
+        .catch(err => console.log(err));
+    },[]);
     const navigate = useNavigate();
     const handleClick = () => {
         try {
-            props.login({ mNumber, password });
+            props.login({ mNumber, password, users });
         } catch (e) {
             alert('가입하지 않은 정보입니다.');
             setMNumber('');
@@ -25,6 +25,7 @@ function LoginForm(props) {
     const changeAuthMode = () => {
         setAuthMode(authMode === "signin" ? "signup" : "signin")
     };
+    const [data, setData] = useState("");
     const nameChangeHandler = e => {
         setData( prevState => {
             return { ...prevState, name: e.target.value }
@@ -139,8 +140,7 @@ function LoginForm(props) {
                     </div>
                     <div className="d-grid gap-2 mt-3">
                         <button type="submit" className="btn btn-dark" onClick={()=>{
-                            users.push(data)
-                            console.log(users)
+                            axios.post('URL', data)
                         }}>
                             가입하기
                         </button>
