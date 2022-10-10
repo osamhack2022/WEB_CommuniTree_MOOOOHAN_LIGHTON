@@ -25,7 +25,7 @@ function LoginForm(props) {
     const changeAuthMode = () => {
         setAuthMode(authMode === "signin" ? "signup" : "signin")
     };
-    const [data, setData] = useState("");
+    const [data, setData] = useState({});
     const nameChangeHandler = e => {
         setData( prevState => {
             return { ...prevState, name: e.target.value }

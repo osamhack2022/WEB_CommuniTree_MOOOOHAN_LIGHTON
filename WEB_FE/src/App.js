@@ -11,6 +11,7 @@ import NotFound from './NotFound';
 import LoginForm from './aboutLogin/LoginForm';
 import Move from './aboutLogin/Move';
 import Write from './Write';
+import List from './List';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +28,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link onClick={ ()=>{ navigate('/profile') } }>내 나무</Nav.Link>
             <Nav.Link onClick={ ()=>{ navigate('/write') } }>열매 달기</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/list') } }>열매 목록</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
             {
@@ -43,7 +45,8 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<LoginForm authenticated={authenticated} login={login} />}/>
         <Route path="/profile" element={ authenticated ? (<Profile user = {user} />) : <Move/> }/>
-        <Route path="/write" element={ authenticated ? (<Write />) : <Move/> }/>
+        <Route path="/write" element={ authenticated ? (<Write user={user}/>) : <Move/> }/>
+        <Route path="/list/:id" element={ authenticated ? (<List />) : <Move/> }/>
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>

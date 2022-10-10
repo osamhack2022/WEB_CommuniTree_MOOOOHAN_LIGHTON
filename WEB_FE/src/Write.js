@@ -5,11 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
-function Write() {
+function Write(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tree, setTree] = useState('');
     const [fruit, setFruit] = useState('');
+    const { mNumber, email, password, name } = props.user || {};
     const [users, setUsers] = useState([]);
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users')
@@ -30,6 +31,11 @@ function Write() {
                         <FloatingLabel controlId="floatingSelectGrid" label="열매를 달 나무">
                             <Form.Select aria-label="Floating label select example" onChange={e=>{setTree(e.target.value)}}>
                                 <option>나무 종류 보기</option>
+                                {
+                                    users.map((usersArr)=>(
+                                        <option value = {usersArr.name}>{usersArr.name}</option>
+                                    ))
+                                }
                             </Form.Select>
                         </FloatingLabel>
                     </Col>
@@ -45,7 +51,7 @@ function Write() {
                     </Col>
                 </Row>
                 <div className="d-grid gap-2 mt-3">
-                            <button type="submit" className="btn btn-dark" onClick={()=>{axios.post('URL', {title: {title}, content: {content}, tree: {tree}, fruit: {fruit}})}}>
+                            <button type="submit" className="btn btn-dark" onClick={()=>{axios.post('URL', {title: {title}, content: {content}, tree: {tree}, fruit: {fruit}, good: 0, writer:{mNumber}})}}>
                                 제출하기
                             </button>
                 </div>
