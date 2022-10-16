@@ -46,7 +46,7 @@ function App() {
         <Route path="/login" element={<LoginForm authenticated={authenticated} login={login} />}/>
         <Route path="/profile" element={ authenticated ? (<Profile user = {user} />) : <Move/> }/>
         <Route path="/write" element={ authenticated ? (<Write user={user}/>) : <Move/> }/>
-        <Route path="/list/:id" element={ authenticated ? (<List />) : <Move/> }/>
+        <Route path="/list" element={ authenticated ? (<List />) : <Move/> }/>
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>

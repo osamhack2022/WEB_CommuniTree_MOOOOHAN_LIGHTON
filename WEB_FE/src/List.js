@@ -4,7 +4,8 @@ import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
-function List() {
+function List(props) {
+    const [modalShow, setModalShow] = useState(false);
     const [notes, setNotes] = useState('');
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users')
@@ -14,8 +15,11 @@ function List() {
     return(
         <ListGroup as="ol" numbered>
             {
-                notes.map((notesArr)=>(
-                    <Post notesArr={notesArr}/>
+                notes.map((notesArr, i)=>(
+                    <>
+                        <Post notesArr={notesArr} onClick={()=>setModalShow(true)}/>
+                        <View i={i} show={modalShow} onHide={() => setModalShow(false)}/>
+                    </>
                 ))
             }
         </ListGroup>
@@ -31,8 +35,8 @@ function Post({notesArr}) {
                         <div className="fw-bold">{notesArr.title}</div>
                         {notesArr.content}
                     </div>
-                    <Badge bg="primary" pill>
-                        {notesArr.good}
+                    <Badge bg="dark" pill>
+                        댓글: {notesArr.comment.length()}
                     </Badge>
                 </ListGroup.Item>
             )
@@ -43,8 +47,8 @@ function Post({notesArr}) {
                         <div className="fw-bold">{notesArr.title}</div>
                         {notesArr.content}
                     </div>
-                    <Badge bg="primary" pill>
-                        {notesArr.good}
+                    <Badge bg="dark" pill>
+                        댓글: {notesArr.comment.length()}
                     </Badge>
                 </ListGroup.Item>
             )
@@ -55,8 +59,8 @@ function Post({notesArr}) {
                         <div className="fw-bold">{notesArr.title}</div>
                         {notesArr.content}
                     </div>
-                    <Badge bg="primary" pill>
-                        {notesArr.good}
+                    <Badge bg="dark" pill>
+                        댓글: {notesArr.comment.length()}
                     </Badge>
                 </ListGroup.Item>
             )

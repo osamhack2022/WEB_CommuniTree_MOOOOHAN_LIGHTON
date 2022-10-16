@@ -12,9 +12,13 @@ function Write(props) {
     const [fruit, setFruit] = useState('');
     const { mNumber, email, password, name } = props.user || {};
     const [users, setUsers] = useState([]);
+    const [notes, setNotes] = useState('');
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users')
         .then(res => setUsers(res.data))
+        .catch(err => console.log(err));
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(res => setNotes(res.data))
         .catch(err => console.log(err));
     },[]);
     return (
@@ -33,7 +37,7 @@ function Write(props) {
                                 <option>나무 종류 보기</option>
                                 {
                                     users.map((usersArr)=>(
-                                        <option value = {usersArr.name}>{usersArr.name}</option>
+                                        <option value = {usersArr.mNumber}>{usersArr.name}</option>
                                     ))
                                 }
                             </Form.Select>
@@ -51,7 +55,7 @@ function Write(props) {
                     </Col>
                 </Row>
                 <div className="d-grid gap-2 mt-3">
-                            <button type="submit" className="btn btn-dark" onClick={()=>{axios.post('URL', {title: {title}, content: {content}, tree: {tree}, fruit: {fruit}, good: 0, writer:{mNumber}})}}>
+                            <button type="submit" className="btn btn-dark" onClick={()=>{axios.post('URL', notes.push({title: {title}, content: {content}, tree: {tree}, fruit: {fruit}, good: 0, writer:{mNumber}}))}}>
                                 제출하기
                             </button>
                 </div>
