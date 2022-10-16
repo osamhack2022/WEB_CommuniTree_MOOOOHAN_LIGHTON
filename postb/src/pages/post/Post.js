@@ -4,34 +4,44 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const Post = ({onSaveData}) => {
-    const [form,setForm] = useState({
-        title : '',
-        content: '',
-        username: '',
-    })
+const Post = ({}) => {
+    
+//////////////////////////////////////////////////
+// query로 데이터 올리기 설치는 함
+// let result = useQuery('작명', ()=>
+//     axios.post('https://codingapple1.github.io/userdata.json')
+//     .then((res)=>{ return res.data })
+//     .catch(err => console.log(err))
+// )
+// ----------------------------------------------------
+const [form,setForm] = useState({
+    title : '',
+    content: '',
+    username: '',
+})
 
-    const handleChange = (e) => {
-        const {title,value} = e.target;
-        setForm(
-            {
-                ...form,
-                [title] : value
-            }
-        )
-    }
+const handleChange = (e) => {
+    const {title,value} = e.target;
+    setForm(
+        {
+            ...form,
+            [title] : value
+        }
+    )
+}
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSaveData(form);
-        setForm(
-            {
-                title : '',
-                content: '',
-                username: '',
-            }
-        )
-    }
+const handleSubmit = (e) => {
+    e.preventDefault();
+    //axios.post(form)
+    setForm(
+        {
+            title : '',
+            content: '',
+            username: '',
+        }
+    )
+}
+/////////////////////////////////////////////////
 
 
     // 페이지 형식
@@ -48,7 +58,7 @@ const Post = ({onSaveData}) => {
                             label="Title"
                             className="mb-3"
                         >
-                            <Form.Control type="title" placeholder="name@example.com" />
+                            <Form.Control type="title" placeholder="name@example.com" value={form.title} onChange={handleChange} />
                         </FloatingLabel>
                     </Card.Title>
                     <Card.Text>
@@ -57,10 +67,11 @@ const Post = ({onSaveData}) => {
                         as="textarea"
                         placeholder="Leave a content here"
                         style={{ height: '400px' }}
+                        value={form.content} onChange={handleChange}
                         />
                     </FloatingLabel>
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary" onClick={handleSubmit}>Submit</Button>
                 </Card.Body>
             </Card>
         </div>
@@ -69,20 +80,3 @@ const Post = ({onSaveData}) => {
 }
 
 export default Post
-
-// <>
-//     <FloatingLabel
-//         controlId="floatingInput"
-//         label="Title"
-//         className="mb-3"
-//     >
-//         <Form.Control type="title" placeholder="name@example.com" />
-//     </FloatingLabel>
-//     <FloatingLabel controlId="floatingTextarea2" label="Content">
-//         <Form.Control
-//         as="textarea"
-//         placeholder="Leave a content here"
-//         style={{ height: '100px' }}
-//         />
-//     </FloatingLabel>
-// </>

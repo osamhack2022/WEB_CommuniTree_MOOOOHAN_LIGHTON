@@ -16,11 +16,11 @@ function Board(){
 
     //axios.get(데이터 홈페이지) 고치기
 
-    // useEffect(()=>{
-    //     axios.get('https://jsonplaceholder.typicode.com/users')
-    //     .then(res => setInfo(res.data))
-    //     .catch(err => console.log(err));
-    // },[]);
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(res => setInfo(res.data))
+        .catch(err => console.log(err));
+    },[]);
     useEffect(()=>{
         try {
             setInfo(data);
